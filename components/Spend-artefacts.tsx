@@ -6,11 +6,17 @@ import { resolvePlutusScriptAddress } from "@meshsdk/core";
 import { useState, useEffect } from "react";
 import { useArtefact } from "../hooks/useArtefact";
 import { UTxO } from "@meshsdk/core";
+import { get } from "http";
 
 export default function SpendArtefacts() {
     const [Cbor, setCbor] = useState<string | null>(null);
     const [address, setAddress] = useState<string | null>(null);
-    const { utxos, collateral } = useArtefact();
+    const { utxos, collateral, getMessage, message } = useArtefact();
+
+    function handleGetMessage() {
+        getMessage();
+    }
+
     useEffect(() => {
         const script: PlutusScript = {
             code: cbor
@@ -23,13 +29,16 @@ export default function SpendArtefacts() {
         const plutusScriptAddress = resolvePlutusScriptAddress(script, 0);
         setAddress(plutusScriptAddress);
     }, []);
+
+
     return (
         <div>
             <p>Plutus Script: {Cbor}</p>
             <p>Plutus Script Address: {address}</p>
-            {utxos.map((utxo: UTxO, index) => (
-                <p key={index}>{utxo?.output?.amount.map((asset) => asset.unit)}</p>
-            ))}
+            
+            <h2>Let's get the message</h2>
+            <button onClick={handleGetMessage}>Get Message</button>
+            <p>{utxos && message }</p>
         </div>
     );
 }
