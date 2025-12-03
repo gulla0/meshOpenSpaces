@@ -15,7 +15,7 @@ export async function buildFirstTx(utxos: UTxO[], address: string) {
 
          const unsignedTx: string = await firstTx
         .txOut("addr_test1wz26h2k0ga9q2tuk84jdjm69tjyyfndfqzh8upxp8dhgmtqhh6atz", [{unit: "lovelace", quantity: "10000000"}])
-     
+        .changeAddress(address)
         .selectUtxosFrom(utxos)
         .complete()
         
@@ -24,7 +24,10 @@ export async function buildFirstTx(utxos: UTxO[], address: string) {
         }
         
     } catch (e: any) {
-        console.log(e)
+      
+        return {
+            error: e.message
+        }
     
     }
    

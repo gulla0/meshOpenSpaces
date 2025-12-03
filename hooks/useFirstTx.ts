@@ -38,6 +38,10 @@ export const useFirstTx = () => {
                 const txHash = await wallet.submitTx(signTx);
                 setTxHash(txHash);
             }
+
+            if (response && response.error){
+                setError(response.error);
+            }
             
 
         }
