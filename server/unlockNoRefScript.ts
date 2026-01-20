@@ -121,7 +121,6 @@ export async function unlockNoRefScript(walletUtxos: UTxO[], address: string, co
     .changeAddress(address)
     .selectUtxosFrom(walletUtxos)
     .txInCollateral(collateral[0].input.txHash, collateral[0].input.outputIndex, collateral[0].output.amount, collateral[0].output.address)
-    .txOut(address, scriptUTXOs[0].output.amount)
     .complete();
 
     return {
