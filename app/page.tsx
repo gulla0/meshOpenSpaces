@@ -3,6 +3,8 @@ import SpendArtefacts from "../components/Spend-artefacts";
 import { BuilderFestTicketButton } from "@/components/BuilderFestTicketButton";
 // import { UnlockNoRefScript } from "@/components/unlockNoRefScriptButton";
 import {DeployRefScriptButton} from "@/components/DeployRefScriptButton";
+import { RegisterDrepButton } from "@/components/RegisterDrep";
+
 
 export default function Home() {
   return (
@@ -12,7 +14,8 @@ export default function Home() {
         {/*<SpendArtefacts />*/}
         {/* <FirstTx /> */}
         {/* <UnlockNoRefScript /> */}
-        <DeployRefScriptButton />
+      {/* <DeployRefScriptButton /> */}
+        <RegisterDrepButton />
       </main>
     </div>
   );
